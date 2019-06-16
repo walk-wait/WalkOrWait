@@ -1,2 +1,2 @@
 # WalkOrWait
-test test
+test version 2
