@@ -58,3 +58,4 @@ t_w &= \text{the travelling time from position A to position B through walking} 
 t_b &= \text{the travelling time from position A to position B through public transit} \\
 p(t) &= \text{the probability of public transit encountering interruption} \\
 \end{aligned}$
+
