@@ -33,7 +33,7 @@ var myhal = [{'name': 'The Myhal Building', 'lat':43.392519, 'lng':-79.232519}]
 
         for (var x in myhal) {
         var building = myhal[x];
-        var location = new google.mps.LatLong(building.lat,building.long),
+        var location = new google.mps.LatLong(building.lat,building.long)
         var marker = new google.maps.Marker({
         position: location,
         title: building.name,
@@ -44,7 +44,7 @@ var myhal = [{'name': 'The Myhal Building', 'lat':43.392519, 'lng':-79.232519}]
       google.maps.event.addDomListener(window, "load", initialize)
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={API_Key}&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp45Ch63fi0T818RKPSyEEUSqHdDyfVvU&callback=initMap"
     async defer></script>
   </body>
 </html>
