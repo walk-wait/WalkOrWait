@@ -1,6 +1,7 @@
 require("dotenv").config();
 const db = require("../models");
 const axios = require("axios");
+const path = require("path");
 
 // Create a new arrival
 app.post("/api/arrival", function(req, res) {
@@ -44,3 +45,34 @@ app.post("/api/arrival", function(req, res) {
 		console.log(error.config);
 	});
 });
+
+
+
+//Google walk data
+
+    app.post("/search", (req, res) => {
+        // let walkTime = ;
+        axios.get(
+			`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${startingStop}&destinations=${destination}&mode=walking&language=fr-FR&key=${process.env.API_KEY}`
+        ).then(
+            (response) => {
+                res.json(response.data.items)
+            }
+        ).catch(
+            (err) => {
+                res.json({error: error})
+            }
+        );
+    });
+
+    app.post("/api/walkDistance", (req, res) => {
+        db.Walk.create(req.body).then(
+            (response) => {
+                res.json({successful: response});
+            }
+        ).catch(
+            (err) => {
+                res.json({error: err});
+            }
+        );
+    });
