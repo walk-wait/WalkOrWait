@@ -55,9 +55,9 @@ $
 d &=& \text{distance between starting position to end position} \\
 v_w &=& \text{the average speed of walking} \\
 v_b &=& \text{the average speed of taking the bus} \\
-t_w &= \text{the travelling time from position A to position B through walking} \\
-t_b &= \text{the travelling time from position A to position B through public transit} \\
-p(t) &= \text{the probability of public transit encountering interruption} \\
+t_w &=& \text{the travelling time from position A to position B through walking} \\
+t_b &=& \text{the travelling time from position A to position B through public transit} \\
+p(t) &=& \text{the probability of public transit encountering interruption} \\
 \end{aligned}
 
 Note: 
