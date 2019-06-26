@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 # WalkOrWait
 
 ### What is Walk/Wait?
@@ -59,3 +61,5 @@ t_b &= \text{the travelling time from position A to position B through public tr
 p(t) &= \text{the probability of public transit encountering interruption} \\
 \end{aligned}$
 
+---
+<sub>&copy; June 2019 Sharon Chien, Paul Xu, Quang Chieu Nguyen and Holland Gronau </sub>
