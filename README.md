@@ -44,12 +44,12 @@ Because we are setting out with a limited scope to only server some users of the
 Our base algorithm looks like this we take our distance between two points starting and destination. A bus will always travel greater distances than someone who is walking if we start at the same point at the same time (tb). It’s a good starting point that many other factors will need to be worked into but it should be both fun and interesting to add to our project. 
 Here is the algorithm we are applying for the choice decision by evaluating the time duration of walking and taking public transit (including wait times):
 
-$$
-\frac{d}{v_w} < t_d + \frac{d}{v_b} $$
+$
+\frac{d}{v_w} < t_d + \frac{d}{v_b} $
 
-$$
+$
 \int_0^{t_w} \Big( p(t) + \Big(\frac{d}{v_b} + t \Big) \Big)  dt + \Big( 1 - \int_0^{t_w} p(t)dt \Big) \Big( \frac{d}{v_w} + t_w \Big)
-$$
+$
 
 $\begin{aligned}
 d &= \text{distance between starting position to end position} \\
