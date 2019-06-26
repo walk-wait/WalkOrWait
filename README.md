@@ -51,6 +51,7 @@ $
 \int_0^{t_w} \Big( p(t) + \Big(\frac{d}{v_b} + t \Big) \Big)  dt + \Big( 1 - \int_0^{t_w} p(t)dt \Big) \Big( \frac{d}{v_w} + t_w \Big)
 $
 
+$$
 \begin{aligned}
 d &=& \text{distance between starting position to end position} \\
 v_w &=& \text{the average speed of walking} \\
@@ -59,6 +60,7 @@ t_w &=& \text{the travelling time from position A to position B through walking}
 t_b &=& \text{the travelling time from position A to position B through public transit} \\
 p(t) &=& \text{the probability of public transit encountering interruption} \\
 \end{aligned}
+$$
 
 Note: 
 Please confirm to [install MathJax Plugin](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima)
