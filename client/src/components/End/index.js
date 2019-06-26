@@ -1,24 +1,13 @@
 import React, { Component } from "react";
 
 class Arrival extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            options : [
-                {value : "Bus 1"},
-                {value : "Bus 2"},
-                {value : "Bus 3"},
-            ]
-        }
-    }
-  
   render() {
     return (
     <div className="input-group mb-3">
-        <select className="custom-select" id="" >
+        <select className="custom-select" id="" onChange={(e) => this.props.handleChange(e)}>
             <option defaultValue>Arrive...</option>
-            {this.state.options.map(option =>
-              <option key={`${option.value}`} value={option.value}>{option.value}</option>
+            {this.props.arrivalOptions.map(option =>
+              <option key={`${option.route},${option.id}`} value={option.id} data-route={option.route}>{option.route} - {option.title}</option>
             )}
         </select>
     </div>

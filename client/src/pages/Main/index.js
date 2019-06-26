@@ -44,32 +44,37 @@ class Main extends React.Component {
         let thisBus = {}
         thisBus.route = bus.route.id
         thisBus.id = bus.stop.id
-        thisBus.title = bus.values[0].direction.title.split("To: ")[1]
+        let fullTitle = bus.values[0].direction.title.split("To: ")[1]
+        let direction = fullTitle.split(" - ")[0].charAt(0)
+        let title = fullTitle.split(" - ")[1].split(" ").slice(1).join(' ')
+        thisBus.title = bus.route.id + direction + " - " + title
         departOptions.push(thisBus)
       });
       this.setState({departOptions})
     })
   }
 
-  handleDepartInput = (e) => {
+  handleDepartInput = async (e) => {
     e.preventDefault()
-    console.log(e.target)
     let index = e.target.selectedIndex
     let selectedBus = e.target.childNodes[index]
     let depart = {
       route: selectedBus.getAttribute('data-route'),
       stopId: e.target.value,
     }
-    this.setState({depart})
+    await this.setState({depart})
+    this.listDestinations()
+
   }
 
   listDestinations = () => {
+    console.log(`destination function ${this.state.depart.route}`)
     let {route, stopId} = this.state.depart
+    console.log(`listEstination function: ${route}, ${stopId}`)
     API.getNextStops(route, stopId)
       .then(res => {
-        //receive all stop id, stop title info
-        //update the departOptions array
-        // call function to populate the arrival select.
+        console.log(res.data)
+      this.setState({arrivalOptions: res.data})
       })
   }
 
@@ -82,7 +87,9 @@ class Main extends React.Component {
       route: selectedBus.getAttribute('data-route'),
       stopId: e.target.value,
     }
+    console.log(arrival)
     this.setState({arrival})
+    console.log(this.state.arrival)
   }
 
   handleSubmit = (e) => {
@@ -102,7 +109,7 @@ class Main extends React.Component {
                   <Start departOptions={this.state.departOptions} geolocate={this.geolocate} latitude={this.state.latitude} longitude={this.state.longitude} handleChange={this.handleDepartInput}/>
               </MDBCol>
               <MDBCol md="4" sm="12">
-                  <End arrivalOptions={this.state.arrivalOptions}/> 
+                  <End arrivalOptions={this.state.arrivalOptions} handleChange={this.handleDestinationInput}/> 
               </MDBCol>
               <MDBCol md="1">
                 <MDBBtn size="sm">Submit</MDBBtn>
