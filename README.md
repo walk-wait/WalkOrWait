@@ -45,7 +45,9 @@ Our base algorithm looks like this we take our distance between two points start
 Here is the algorithm we are applying for the choice decision by evaluating the time duration of walking and taking public transit (including wait times):
 
 $
-\frac{d}{v_w} < t_d + \frac{d}{v_b} $
+\frac{d}{v_w} < t_d + \frac{d}{v_b} 
+$
+
 $
 \int_0^{t_w} \Big( p(t) + \Big(\frac{d}{v_b} + t \Big) \Big)  dt + \Big( 1 - \int_0^{t_w} p(t)dt \Big) \Big( \frac{d}{v_w} + t_w \Big)
 $
