@@ -45,23 +45,24 @@ Our base algorithm looks like this we take our distance between two points start
 Here is the algorithm we are applying for the choice decision by evaluating the time duration of walking and taking public transit (including wait times):
 
 $
-\frac{d}{v_w} < t_d + \frac{d}{v_b} $
+\frac{d}{v_w} < t_d + \frac{d}{v_b} 
+$
 
 $
 \int_0^{t_w} \Big( p(t) + \Big(\frac{d}{v_b} + t \Big) \Big)  dt + \Big( 1 - \int_0^{t_w} p(t)dt \Big) \Big( \frac{d}{v_w} + t_w \Big)
 $
 
-$\begin{aligned}
-d &= \text{distance between starting position to end position} \\
-v_w &= \text{the average speed of walking} \\
-v_b &= \text{the average speed of taking the bus} \\
-t_w &= \text{the travelling time from position A to position B through walking} \\
-t_b &= \text{the travelling time from position A to position B through public transit} \\
-p(t) &= \text{the probability of public transit encountering interruption} \\
-\end{aligned}$
+where
 
-Note: 
+$d = \text{distance between starting position to end position}$
+$v_w = \text{the average speed of walking}$
+$v_b = \text{the average speed of taking the bus}$
+$t_w = \text{the travelling time from position A to position B through walking}$
+$t_b = \text{the travelling time from position A to position B through public transit}$
+$p(t) = \text{the probability of public transit encountering interruption}$
+
+
+**Note:**
 Please confirm to [install MathJax Plugin](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima)
 
----
 <sub>&copy; June 2019 Sharon Chien, Paul Xu, Quang Chieu Nguyen and Holland Gronau </sub>
