@@ -22,9 +22,7 @@ CREATE TABLE bookmark (
     REFERENCES users(id)
     
 );
-
 /* stop_id, lon, lat, tag_id, specify no. of digits */
-
 /* */
 USE route_db;
 CREATE TABLE map (
@@ -50,7 +48,6 @@ CREATE TABLE stops (
 	CONSTRAINT FK_RouteId FOREIGN KEY (id)
     REFERENCES routes(id)
 );
-
 
 /*in seed.sql*/
 INSERT INTO users(username, passwords) VALUES ("hxu", "123");
