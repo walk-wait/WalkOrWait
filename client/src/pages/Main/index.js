@@ -4,7 +4,6 @@ import Start from '../../components/Start'
 import End from '../../components/End'
 import API from '../../utils/API'
 
-
 class Main extends React.Component {
   constructor(props){
     super(props)
@@ -38,38 +37,40 @@ class Main extends React.Component {
     API.getAllBuses(lat, lon)
     .then(res => {
       let buses = res.data
-      console.log(buses)
       let departOptions = []
       buses.forEach(bus => {
         let thisBus = {}
         thisBus.route = bus.route.id
         thisBus.id = bus.stop.id
-        thisBus.title = bus.values[0].direction.title.split("To: ")[1]
+        let fullTitle = bus.values[0].direction.title.split("To: ")[1]
+        let direction = fullTitle.split(" - ")[0].charAt(0)
+        let title = fullTitle.split(" - ")[1].split(" ")[1]
+        let stop = bus.stop.title.split(" ").slice(1).join(" ")
+        thisBus.title = bus.route.id + direction + " - " + title + " / " + stop
         departOptions.push(thisBus)
       });
       this.setState({departOptions})
     })
   }
 
-  handleDepartInput = (e) => {
+  handleDepartInput = async (e) => {
     e.preventDefault()
-    console.log(e.target)
     let index = e.target.selectedIndex
     let selectedBus = e.target.childNodes[index]
     let depart = {
       route: selectedBus.getAttribute('data-route'),
       stopId: e.target.value,
     }
-    this.setState({depart})
+    await this.setState({depart})
+    this.listDestinations()
+
   }
 
   listDestinations = () => {
     let {route, stopId} = this.state.depart
     API.getNextStops(route, stopId)
       .then(res => {
-        //receive all stop id, stop title info
-        //update the departOptions array
-        // call function to populate the arrival select.
+      this.setState({arrivalOptions: res.data})
       })
   }
 
@@ -82,15 +83,20 @@ class Main extends React.Component {
       route: selectedBus.getAttribute('data-route'),
       stopId: e.target.value,
     }
+    console.log(arrival)
     this.setState({arrival})
+    console.log(this.state.arrival)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let {depart, arrival} = this.state.arrival
-    //Write API call that sends these endpoints
-    // RestBus needs to do a truple query
-    // needs to comebine holly's code in the backend
+    let route = parseInt(this.state.depart.route)
+    let origin = this.state.depart.stopId
+    let destination = this.state.arrival.stopId
+    API.search(route, origin, destination)
+      .then(res => {
+        console.log(res.data)
+      })
   }
 
   render() {
@@ -102,10 +108,10 @@ class Main extends React.Component {
                   <Start departOptions={this.state.departOptions} geolocate={this.geolocate} latitude={this.state.latitude} longitude={this.state.longitude} handleChange={this.handleDepartInput}/>
               </MDBCol>
               <MDBCol md="4" sm="12">
-                  <End arrivalOptions={this.state.arrivalOptions}/> 
+                  <End arrivalOptions={this.state.arrivalOptions} handleChange={this.handleDestinationInput}/> 
               </MDBCol>
               <MDBCol md="1">
-                <MDBBtn size="sm">Submit</MDBBtn>
+                <MDBBtn size="sm" onClick={(e) => this.handleSubmit(e)}>Submit</MDBBtn>
               </MDBCol>
           </MDBRow>
         </form>
