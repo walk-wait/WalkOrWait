@@ -7,5 +7,8 @@ export default {
   },
   getNextStops: (route, stopId) =>{
     return axios.get(`/api/bus/nextstops/${route}/${stopId}`)
+  },
+  search: (route, originStopId, destinationStopId) => {
+    return axios.get(`api/app/search/${route}/${originStopId}/${destinationStopId}`)
   }
 };
