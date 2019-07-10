@@ -60,5 +60,5 @@ typings/
 # next.js build output
 .next
 
-# config.json file
-config/config.json
+# config.json file. Note that I am commenting the following line out!
+# config/config.json
